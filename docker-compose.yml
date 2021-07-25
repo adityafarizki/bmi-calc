@@ -1,0 +1,39 @@
+version: '3'
+services:
+  postgresql:
+    image: 'postgres'
+    environment: 
+      - POSTGRES_PASSWORD=test
+      - POSTGRES_USER=test
+      - POSTGRES_DB=prosa-license-dev-db
+      - TZ=Asia/Jakarta
+    ports:
+      - 9821:5432
+  redis:
+    image: bitnami/redis:latest
+    environment:
+      - REDIS_PASSWORD=horseredish
+    ports:
+      - 6379:6379
+  postgres_keycloak:
+      image: postgres
+      environment:
+        POSTGRES_DB: keycloak
+        POSTGRES_USER: keycloak
+        POSTGRES_PASSWORD: password
+  keycloak:
+      image: quay.io/keycloak/keycloak:latest
+      environment:
+        DB_VENDOR: POSTGRES
+        DB_ADDR: postgres_keycloak
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_SCHEMA: public
+        DB_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+      ports:
+        - 8080:8080
+        - 8443:8443
+      depends_on:
+        - postgres_keycloak
