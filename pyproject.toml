@@ -8,6 +8,8 @@ authors = ["adityafarizki <aditya.farizki1@gmail.com>"]
 python = "^3.8"
 fastapi = "^0.67.0"
 requests = "^2.26.0"
+gunicorn = "^20.1.0"
+uvicorn = "^0.14.0"
 
 [tool.poetry.dev-dependencies]
 behave = "^1.2.6"
