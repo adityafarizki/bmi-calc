@@ -6,6 +6,7 @@ orbs:
   # so you dont have to copy and paste it everywhere.
   # See the orb documentation here: https://circleci.com/developer/orbs/orb/circleci/python
   python: circleci/python@1.2
+  heroku: circleci/heroku@1.2.6
 
 workflows:
   main-ci:  # This is the name of the workflow, feel free to change it to better match your workflow.
@@ -16,6 +17,9 @@ workflows:
       - build:
           requires:
             - test
+      - deploy:
+          requires:
+            - build
 
 jobs:
   test:
@@ -35,11 +39,22 @@ jobs:
           version: 19.03.13
       - python/install-packages:
           pkg-manager: poetry
+      - heroku/install
       - run: |
-         echo "$DOCKER_PASS" | docker login --username $DOCKER_USER --password-stdin
+         docker login --username=_ --password=$(heroku auth:token) registry.heroku.com
       - run:
           command: docker build --tag $DOCKER_IMAGE_NAME .
           name: Build docker image
       - run:
           command: docker push $DOCKER_IMAGE_NAME
           name: Push docker image
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - setup_remote_docker:
+          version: 19.03.13
+      - heroku/release-docker-image
+
+          
