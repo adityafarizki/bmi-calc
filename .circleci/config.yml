@@ -53,6 +53,8 @@ jobs:
     steps:
       - checkout
       - heroku/install
+      - setup_remote_docker:
+          version: 19.03.13
       - heroku/release-docker-image
 
           
