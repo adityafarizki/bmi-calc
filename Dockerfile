@@ -7,7 +7,7 @@ RUN python -m pip install --no-cache-dir poetry \
     && python -m poetry export --without-hashes -f requirements.txt > requirements.txt \
     && python -m pip install -r requirements.txt
 
-RUN apt install -y dumb-init
+RUN apt update && apt install -y dumb-init
 
 COPY ./ /app
 WORKDIR /app
