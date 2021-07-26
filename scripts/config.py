@@ -18,6 +18,8 @@ class GunicornConfig(BaseSettings):
     graceful_timeout: int = 120
     timeout: int = 120
     keepalive: int = 60
+    host: str = "0.0.0.0"
+    port: str = "8000"
 
     # error log file
     errorlog: Optional[str] = "-"
@@ -35,3 +37,4 @@ accesslog = g_config.accesslog
 graceful_timeout = g_config.graceful_timeout
 timeout = g_config.timeout
 keepalive = g_config.keepalive
+bind = f"{g_config.host}:{g_config.port}"
