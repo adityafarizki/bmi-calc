@@ -53,6 +53,6 @@ jobs:
     steps:
       - checkout
       - heroku/install
-      - run: heroku container:release $HEROKU_APP_NAME
+      - heroku/release-docker-image
 
           
