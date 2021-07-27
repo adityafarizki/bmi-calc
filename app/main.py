@@ -26,7 +26,7 @@ def calculate_bmi(weight: float, height: float) -> BMIResult:
     if weight <= 0:
         raise HTTPException(400, "Weight should be > 0 kg")
     if height <= 0:
-        raise HTTPException(400, "Height should be > 0 m")
+        raise HTTPException(400, "Height should be > 0 cm")
 
     bmi_calc = BMICalculator(weight, height)
 

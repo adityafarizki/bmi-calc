@@ -7,21 +7,21 @@ class BMICalculator:
     normal_range = [18.5, 25]
     overweight_range = [25, 2 ** 32 - 1]
 
-    def __init__(self, weight_in_kg: float, height_in_m: float):
+    def __init__(self, weight_in_kg: float, height_in_cm: float):
         if weight_in_kg <= 0:
             raise ValueError("Invalid weight value")
 
-        if height_in_m <= 0:
+        if height_in_cm <= 0:
             raise ValueError("Invalid height value")
 
         self.weight = weight_in_kg
-        self.height = height_in_m
+        self.height = height_in_cm
 
     def get_bmi_value(self) -> float:
         if self.height <= 0:
             raise ValueError("Invalid height value")
 
-        bmi_value = self.weight / (self.height ** 2)
+        bmi_value = self.weight / ((self.height / 100) ** 2)
         # round to 2 decimal places
         bmi_value = int(bmi_value * 100) / 100
 

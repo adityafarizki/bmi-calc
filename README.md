@@ -1,7 +1,7 @@
 [![CircleCI](https://circleci.com/gh/adityafarizki/bmi-calc.svg?style=svg)](https://app.circleci.com/pipelines/github/adityafarizki/bmi-calc?invite=true)
 
 # BMI Calculator APP
-To use this app you can go to https://bmi-calc-hf.herokuapp.com/?weight=your_weight_in_kg&height=your_height_in_metre
+To use this app you can go to https://bmi-calc-hf.herokuapp.com/?weight=your_weight_in_kg&height=your_height_in_cm
 
 
 ## CI/CD

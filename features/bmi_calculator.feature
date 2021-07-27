@@ -5,7 +5,7 @@ Feature: BMI Calculator
 
     @wip
     Scenario: Calculate an overweight BMI
-        When the visitor sends request "GET /?height=1.75&weight=85"
+        When the visitor sends request "GET /?height=175&weight=85"
         Then the app returns response "HTTP 200" with the following contents
             """
             {
@@ -15,7 +15,7 @@ Feature: BMI Calculator
             """
     
     Scenario: Calculate an underweight BMI
-        When the visitor sends request "GET /?height=1.75&weight=50"
+        When the visitor sends request "GET /?height=175&weight=50"
         Then the app returns response "HTTP 200" with the following contents
             """
             {
@@ -25,7 +25,7 @@ Feature: BMI Calculator
             """
 
     Scenario: Calculate a normal BMI
-        When the visitor sends request "GET /?height=1.75&weight=70"
+        When the visitor sends request "GET /?height=175&weight=70"
         Then the app returns response "HTTP 200" with the following contents
             """
             {
@@ -39,7 +39,7 @@ Feature: BMI Calculator
         Then the app returns response "HTTP 400" with the following contents
             """
             {
-                "detail": "Height should be > 0 m"
+                "detail": "Height should be > 0 cm"
             }
             """
     
@@ -62,7 +62,7 @@ Feature: BMI Calculator
             """
     
     Scenario: Request without weight params
-        When the visitor sends request "GET /?height=1.75"
+        When the visitor sends request "GET /?height=175"
         Then the app returns response "HTTP 422" with the following contents
             """
             {
